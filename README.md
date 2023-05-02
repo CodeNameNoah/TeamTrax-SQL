@@ -16,7 +16,7 @@ Overall, this project was a great learning experience as it allowed me to work w
 
 ## Languages and Technologies Used
 
-[![Socials](https://skillicons.dev/icons?i=html,css,js,git,heroku,express)](https://skillicons.dev)
+[![Socials](https://skillicons.dev/icons?i=js,git,mysql,nodejs)](https://skillicons.dev)
 
 | Featured Technology Used |                        Link                         |
 | :----------------------: | :-------------------------------------------------: |
@@ -33,7 +33,7 @@ Overall, this project was a great learning experience as it allowed me to work w
 | :-----------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | `Noah Hoang`  | [![Socials](https://skillicons.dev/icons?i=git)](https://github.com/codenamenoah) [![Socials](https://skillicons.dev/icons?i=linkedin)](https://www.linkedin.com/in/codenamenoah/) [![Socials](https://skillicons.dev/icons?i=twitter)](https://twitter.com/CodeNameNoahH) |
 
-## Take A Look At Our Application In Action!
+## Take A Look At Our Application In Action! [CLICK PREVIEW TO WATCH VIDEO!]
 
 - Deployed Site On Heroku - [Note it Down!](https://note-it-down.herokuapp.com/)
 - ![Note It Down!](https://user-images.githubusercontent.com/127361736/235059034-78b9ac82-5a9b-47e4-b952-3ffd79b3ca79.gif)
@@ -97,36 +97,72 @@ Note: Make sure you have a MySQL server running on your computer with the approp
 ## Featured Code Snippet
 
 ```
-app.delete("/api/notes/:id", (req, res) => {
-  let deleteID = req.params.id;
-  console.log(deleteID);
-
-  readFile(path.join(__dirname, "./db/db.json"))
-    .then((text) => {
-      const notes = JSON.parse(text);
-      const newNotes = notes.filter((obj) => obj.id != deleteID);
-      newNotes.forEach((obj, index) => {
-        obj.id = index + 1;
-      });
-      return JSON.stringify(newNotes, null, 4);
-    })
-    .then((notes) => {
-      writeFile(path.join(__dirname, "./db/db.json"), notes);
-    })
-    .then(() => {
-      console.info("Note successfully deleted.");
-      res.send("Note successfully deleted.");
-    })
-    .catch((err) => console.error(err));
-});
-
-app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT}`)
-);
+const multiMenu = () => {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "option",
+        loop: false,
+        message: "What would you like to do?",
+        choices: [
+          "View all departments",
+          "View all roles",
+          "View all employees",
+          "Add a department",
+          "Add a role",
+          "Add an employee",
+          "Update an employee role",
+          "Exit",
+        ],
+      },
+    ])
+    .then((answer) => {
+      switch (answer.option) {
+        case "View all departments":
+          viewDepartments();
+          break;
+        case "View all roles":
+          viewRoles();
+          break;
+        case "View all employees":
+          viewEmployees();
+          break;
+        case "Add a department":
+          addDepartment();
+          break;
+        case "Add a role":
+          addRole();
+          break;
+        case "Add an employee":
+          addEmployee();
+          break;
+        case "Update an employee role":
+          updateEmployee();
+          break;
+        case "Exit":
+          console.log("See you next time!");
+          db.end();
+          break;
+        default:
+          console.log("Invalid! Please try again");
+          multiMenu();
+          break;
+      }
+    });
+};
 
 ```
 
-- These lines of code ultiamtely sets up a route handler using the Express.js framework that deletes a note with a specified ID from a JSON file. It then assigns new unique IDs to the remaining notes, writes the updated array of notes back to the JSON file, and responds with a success message. Finally, the code starts listening for incoming HTTP requests on a specified port and logs a message to the console indicating that the application is running.
+- This is where the magic happens, it is quite a lot I must admit.
+
+Working on this particular part of the application was both challenging and exciting for me. Through this code, I got the chance to work with an external package called inquirer and learned a lot about how to use it effectively.
+
+This section of the code uses inquirer.prompt() to present the user with a list of options, and then it handles the user's selection by executing the appropriate function based on the user's choice using a switch statement.
+
+While working on this code, I discovered that inquirer is a powerful tool for creating interactive command-line applications. I also learned about the importance of good user interface design in creating applications that are easy to use and navigate.
+
+Overall, this was a difficult but exciting part of the application to complete, and it helped me gain a deeper understanding of how to use inquirer effectively and the importance of user interface design in creating functional applications.
 
 ---
 
@@ -148,9 +184,13 @@ app.listen(PORT, () =>
 
   - https://nodejs.org/en
 
-- Guide on Express
+- Documentation on MySQL
 
-  - https://expressjs.com/
+  - https://www.mysql.com/
+
+- Documentation on figlet
+
+  - https://www.npmjs.com/package/figlet
 
 ## License
 
