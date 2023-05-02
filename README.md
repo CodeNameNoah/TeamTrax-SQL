@@ -64,16 +64,33 @@ Overall, this project was a great learning experience as it allowed me to work w
 
 Users would want to use Note-It-Down because it provides a simple and convenient way to keep track of important information or tasks. Whether it's a grocery list, meeting notes, or reminders for upcoming appointments, Note-It-Down makes it easy to jot down and organize these items. Plus, with the ability to delete notes once they're no longer needed, users can keep their workspace clutter-free.
 
-To use Note-It-Down, follow these simple instructions:
+To use TeamTrax-SQL, follow these simple instructions:
 
-1. Go to the Note-It-Down website.
-2. Click on the "Get Started" button
-3. There is an empty note template ready for you to use, just type in the Note Title and Note Text text fields.
-4. To save, click the floppy disk interactive icon in the top right to save the note.
-5. To make a new note, click the "+" interactive icon to create a new sticky note.
-6. Type in the information or task you want to save.
-7. To delete a note, click the trash can icon in the right corner of the note row.
-8. That's it! With Note-It-Down, you can easily create and manage your notes with just a few clicks.
+1. This is a command-line interface (CLI) application that uses Node.js, MySQL, and the inquirer.js library to manage a company's employee database.
+
+2. Here is a simple step-by-step guide to using this CLI application:
+
+3. Install Node.js and MySQL on your computer if you haven't already.
+
+4. Open a new file in your code editor, and copy and paste the code into it.
+
+5. Save the file with a meaningful name, such as "employeeDB.js".
+
+6. In the terminal, navigate to the folder where you saved the file.
+
+7. Install the required dependencies by running the following command in the terminal: npm install
+
+8. Start the application by running the following command in the terminal: node server.js
+
+9. The application will start and display a title and a menu with options for various actions.
+
+10. Use the arrow keys to select an option and press Enter to choose it.
+
+11. Follow the prompts to complete the chosen action, such as entering the name of a new department to add or updating an employee's role ID.
+
+12. After each action, the menu will be displayed again, allowing you to choose another action or exit the application.
+
+Note: Make sure you have a MySQL server running on your computer with the appropriate database schema and data tables for the application to function correctly.
 
 ---
 
