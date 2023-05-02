@@ -109,3 +109,124 @@ const viewEmployees = () => {
     }
   );
 };
+
+let addDepartment = () => {
+  inquirer
+    .prompt([
+      {
+        name: "department",
+        type: "input",
+        message: "Enter a name for the department",
+      },
+    ])
+    .then((answer) => {
+      console.log(answer);
+      db.query(
+        "INSERT INTO department (name) VALUES (?)",
+        [answer.department],
+        function (err, res) {
+          if (err) {
+            throw err;
+          }
+          console.log("Department successfully added!");
+          multiMenu();
+        }
+      );
+    });
+};
+
+const addRole = () => {
+  inquirer
+    .prompt([
+      {
+        name: "roleTitle",
+        type: "input",
+        message: "What is the title of the role?",
+      },
+      {
+        name: "salary",
+        type: "input",
+        message: "What is the job's salary?",
+      },
+      {
+        name: "deptId",
+        type: "input",
+        message: "What is the department ID number?",
+      },
+    ])
+    .then((answer) => {
+      db.query(
+        "INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)",
+        [answer.roleTitle, answer.salary, answer.deptId],
+        function (err, res) {
+          if (err) throw err;
+          console.log("Role successfully added!");
+          multiMenu();
+        }
+      );
+    });
+};
+
+const addEmployee = () => {
+  inquirer
+    .prompt([
+      {
+        name: "firstName",
+        type: "input",
+        message: "What is the employee's first name?",
+      },
+      {
+        name: "lastName",
+        type: "input",
+        message: "What is the employee's last name?",
+      },
+      {
+        name: "roleId",
+        type: "input",
+        message: "What is the employee's role id?",
+      },
+      {
+        name: "managerId",
+        type: "input",
+        message: "What is the manager Id?",
+      },
+    ])
+    .then((answer) => {
+      db.query(
+        "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
+        [answer.firstName, answer.lastName, answer.roleId, answer.managerId],
+        function (err, res) {
+          if (err) throw err;
+          console.log("Employee successfully added!");
+          multiMenu();
+        }
+      );
+    });
+};
+
+const updateEmployee = () => {
+  inquirer
+    .prompt([
+      {
+        name: "id",
+        type: "input",
+        message: "Enter the employee's id",
+      },
+      {
+        name: "newRoleId",
+        type: "input",
+        message: "Enter the new role id",
+      },
+    ])
+    .then((answer) => {
+      db.query(
+        "UPDATE employee SET role_id=? WHERE id=?",
+        [answer.newRoleId, answer.id],
+        function (err, res) {
+          if (err) throw err;
+          console.log("Employee successfully updated!");
+          multiMenu();
+        }
+      );
+    });
+};
